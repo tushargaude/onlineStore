@@ -23,6 +23,17 @@ class UserController extends BaseController {
       this.respondWithError(err);
     }
   }
+  async getItemsById() {
+    try {
+      const payload = await userAction.getItemsById(
+        this.models,
+        this.params.id
+      );
+      this.respondWithSuccess(payload);
+    } catch (err) {
+      this.respondWithError(err);
+    }
+  }
 
 }
 
@@ -32,5 +43,8 @@ module.exports.UserController = {
   },
   getItems: async (req, res) => {
     return new UserController(req, res).getItems();
+  },
+  getItemsById: async (req, res) => {
+    return new UserController(req, res).getItemsById();
   },
 };
