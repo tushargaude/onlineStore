@@ -1,0 +1,545 @@
+openapi: 3.0.0
+
+info:
+  title: Online Store
+  version: 1.0.11
+
+servers:
+  - url: http://localhost:2000/
+  
+tags:
+  - name: items
+    description: List of Items
+    
+  - name: cart
+    description: List of Items in Cart
+      
+  - name: order
+    description: Order Details
+    
+paths:
+
+  /onlineStore/v1/items/lists/:
+    post:
+      tags:
+        - items
+      summary: add item to list.
+      requestBody:
+        content:
+          application/json:
+              schema:
+                $ref: '#/components/schemas/Items'
+                    
+      responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Success'
+          
+          '400':
+            description: Invalid data supplied 
+          
+          '404':
+            description: error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          
+          '500':
+            description: internal server error
+  
+    get:
+        tags:
+          - items
+        summary: list of items
+        responses:
+            '200':
+              description: success
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Itemslist'
+          
+            '400':
+              description: Invalid data supplied 
+            
+            '404':
+              description: error
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Error'
+            
+            '500':
+              description: internal server error
+    
+  
+  /onlineStore/v1/items/lists/{id}/:
+    get:
+        tags:
+          - items
+        summary: item details
+        parameters:
+          - name: id
+            in: path
+            description: id of an item
+            required: true
+            schema:
+              type: integer
+        responses:
+            '200':
+              description: success
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Items'
+                    
+            '404':
+              description: error
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Error'
+            '400':
+              description: Invalid data supplied 
+          
+            '500':
+              description: internal server error
+    
+    delete:
+        tags:
+          - items
+        summary: Delete item
+        description: delete a item
+        parameters:
+        - name: id
+          in: path
+          description: id of an item
+          required: true
+          schema:
+            type: integer
+            
+        responses:
+            '200':
+              description: success
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Success'
+                    
+            '404':
+              description: error
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Error'
+                    
+            '400':
+              description: Invalid data supplied 
+          
+            '500':
+              description: internal server error
+              
+    patch:
+        tags:
+          - items
+        summary: Updete item details.
+        parameters:
+          - name: id
+            in: path
+            description: id of an item
+            required: true
+            schema:
+              type: integer
+        requestBody:
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    price:
+                      type: number
+                    rating:
+                      type: number
+                  
+                  example :
+                      price : 13.5
+                      rating : 4
+                      
+                  
+                      
+        responses:
+            '200':
+              description: success
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Success'
+                    
+            '404':
+              description: error
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Error'
+            
+            '400':
+              description: Invalid data supplied 
+          
+            '500':
+              description: internal server error
+  
+  
+  /onlineStore/v1/cart/cartList/{id}/:
+    post:
+      tags:
+        - cart
+      summary: add item to cart.
+      parameters:
+        - name: id
+          in: path
+          description: id of an item
+          required: true
+          schema:
+            type: integer
+                    
+      responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Success'
+                  
+          '404':
+            description: error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          
+          '400':
+              description: Invalid data supplied 
+          
+          '500':
+              description: internal server error
+  
+  
+  /onlineStore/v1/cart/cartList/:
+    get:
+      tags:
+        - cart
+      summary: list of items in cart.
+      responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/cartList'
+                  
+          '404':
+            description: error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          
+          '400':
+              description: Invalid data supplied 
+          
+          '500':
+              description: internal server error
+  
+  
+  /onlineStore/v1/order/orderList:
+    get:
+      tags:
+        - order
+      summary:  list of order.
+      responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/order'
+                  
+          '404':
+            description: error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          
+          '400':
+              description: Invalid data supplied 
+          
+          '500':
+              description: internal server error
+  
+  /onlineStore/v1/order/orderList/{id}/:
+    get:
+      tags:
+        - order
+      summary:  order details.
+      parameters:
+        - name: id
+          in: path
+          description: id of an item
+          required: true
+          schema:
+            type: integer
+      responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Items'
+                  
+          '404':
+            description: error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          
+          '400':
+              description: Invalid data supplied 
+          
+          '500':
+              description: internal server error
+
+    delete:
+      tags:
+        - order
+      summary: cancel order.
+      parameters:
+        - name: id
+          in: path
+          description: id of an item
+          required: true
+          schema:
+            type: integer
+                    
+      responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Success'
+                  
+          '404':
+            description: error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+          
+          '400':
+              description: Invalid data supplied 
+          
+          '500':
+              description: internal server error
+    
+  
+  /onlineStore/v1/order/payment/{id}:
+    get:
+      tags:
+        - order
+      summary:  order payment.
+      parameters:
+        - name: id
+          in: path
+          description: id of an item
+          required: true
+          schema:
+            type: integer              
+      responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Payment'
+  
+  /onlineStore/v1/order/status/{id}:
+    get:
+      tags:
+        - order
+      summary:  order status.
+      parameters:
+        - name: id
+          in: path
+          description: id of an item
+          required: true
+          schema:
+            type: integer                
+      responses:
+          '200':
+            description: success
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Status'
+          
+          '500':
+              description: internal server error
+                  
+components:
+  schemas:
+    Items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          price:
+            type: integer
+          description:
+            type: string
+        
+        required :
+            - id
+            - name
+            - price
+            
+            
+        
+        example :
+                id : 123
+                name: product
+                price :  15.3
+                description : product description
+                rating : 3
+    
+    Itemslist:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            price:
+              type: integer
+            description:
+              type: string
+          
+          required :
+              - id
+              - name
+              - price
+              
+          example :
+                  - id : 1
+                    name: product1
+                    price :  1000
+                    description : product1 description
+                    rating : 4
+                    
+                  - id : 2
+                    name: product2
+                    price :  324.3
+                    description : product description
+                    rating : 3
+                      
+    Success:
+      type: object
+      properties:
+        type:
+          type: string
+          example : success
+        message:
+          type: string
+          example : success
+    
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          example : eror
+        message:
+          type: string
+          example : error
+    
+    Payment:
+      type: object
+      properties:
+        type:
+          type: string
+          example : success
+        message:
+          type: string
+          example : Cash on delivery
+    
+    Status :
+      type: object
+      properties:
+        type:
+          type: string
+          example : success
+        message:
+          type: string
+          example : shipping
+    
+    cartList:
+      type: object
+      properties:
+          id:
+            type: integer
+          name:
+            type: string
+          price:
+            type: integer
+          description:
+              type: string
+          Quantity :
+              type : integer
+      
+      required:
+        - id
+        - name
+        - price
+        - Quantity
+          
+      example :
+            - id : 1
+              name: product
+              price :  15.3
+              description : product description
+              Quantity : 3
+              
+            - id : 1
+              name: product
+              price :  15.3
+              description : product description
+              Quantity : 3
+    order: 
+      type: object
+      properties:
+          id:
+            type: integer
+          address:
+            type: string
+          price:
+            type: integer
+          date:
+              type: string
+      required:
+        - id
+        - address 
+        - price
+          
+      example :
+                  - id : 1
+                    address: ponda goa
+                    price :  15.3
+                    date :  2022-10-10
+                    
