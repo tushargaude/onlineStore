@@ -1,0 +1,46 @@
+{
+  "name": "spintly-nodejs-template",
+  "version": "1.0.0",
+  "description": "Nodejs template",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^7.0.0-alpha.4",
+    "sequelize-cli": "^6.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "jasmine": "^4.0.2",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
+  },
+  "scripts": {
+    "start": "export NODE_ENV=local;nodemon app.js",
+    "test": "jasmine",
+    "db:migrate:local": "node_modules/.bin/sequelize db:migrate --env local",
+    "db:drop:local": "node_modules/.bin/sequelize db:drop --env local",
+    "db:create:local": "node_modules/.bin/sequelize db:create --env local"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rish15/spintly-nodejs-template.git"
+  },
+  "keywords": [
+    "nodejs",
+    "boilerplate",
+    "server",
+    "javascript"
+  ],
+  "author": "rish15",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rish15/spintly-nodejs-template/issues"
+  },
+  "homepage": "https://github.com/rish15/spintly-nodejs-template#readme"
+}
