@@ -54,6 +54,15 @@ class UserController extends BaseController {
     }
   }
 
+  async updateItem() {
+    try {
+      const payload = await userAction.updateItem(this.models, this.reqBody, this.params.id);
+      this.respondWithSuccess(payload);
+    } catch (err) {
+      this.respondWithError(err);
+    }
+  }
+
 }
 
 module.exports.UserController = {
@@ -71,5 +80,8 @@ module.exports.UserController = {
   },
   deleteItems: async (req, res) => {
     return new UserController(req, res).deleteItems();
+  },
+  updateItem: async (req, res) => {
+    return new UserController(req, res).updateItem();
   },
 };
