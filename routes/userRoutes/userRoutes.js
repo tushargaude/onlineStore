@@ -18,6 +18,7 @@ const UserRoutes = (app, auth) => {
   app.post(`${baseRouteUrl}/order/list/`, UserController.createOrder);
   app.get(`${baseRouteUrl}/order/list/`, UserController.getOrder);
   app.get(`${baseRouteUrl}/order/list/:id`, UserController.getOrderById);
+  app.delete(`${baseRouteUrl}/order/list/:id`, UserController.deleteOrder);
 
 };
 

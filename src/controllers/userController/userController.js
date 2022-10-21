@@ -112,6 +112,18 @@ class UserController extends BaseController {
     }
   }
 
+  async deleteOrder() {
+    try {
+      const payload = await userAction.deleteOrder(
+        this.models,
+        this.params.id
+      );
+      this.respondWithSuccess(payload);
+    } catch (err) {
+      this.respondWithError(err);
+    }
+  }
+
 
 }
 
@@ -148,5 +160,8 @@ module.exports.UserController = {
   },
   getOrderById: async (req, res) => {
     return new UserController(req, res).getOrderById();
+  },
+  deleteOrder: async (req, res) => {
+    return new UserController(req, res).deleteOrder();
   },
 };
