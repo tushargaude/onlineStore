@@ -6,10 +6,8 @@ const {
 const { baseRouteUrl } = require("../globalVariables");
 
 const UserRoutes = (app, auth) => {
-  app.get(`${baseRouteUrl}/users/list`, UserController.getUsers);
-  app.post(`${baseRouteUrl}/users/create`, UserController.createUser);
-  app.patch(`${baseRouteUrl}/users/update/:userId`, UserController.updateUser);
-  app.delete(`${baseRouteUrl}/users/delete/:userId`, UserController.deleteUser);
+  app.post(`${baseRouteUrl}/items/list/`, UserController.createItems);
+
 };
 
 module.exports = UserRoutes;

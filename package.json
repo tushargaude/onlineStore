@@ -21,7 +21,7 @@
     "prettier": "^2.5.1"
   },
   "scripts": {
-    "start": "export NODE_ENV=local;nodemon app.js",
+    "start": "nodemon app.js",
     "test": "jasmine",
     "db:migrate:local": "node_modules/.bin/sequelize db:migrate --env local",
     "db:drop:local": "node_modules/.bin/sequelize db:drop --env local",
