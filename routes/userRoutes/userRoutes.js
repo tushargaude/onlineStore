@@ -16,6 +16,7 @@ const UserRoutes = (app, auth) => {
   app.get(`${baseRouteUrl}/cart/list/`, UserController.getCart);
 
   app.post(`${baseRouteUrl}/order/list/`, UserController.createOrder);
+  app.get(`${baseRouteUrl}/order/list/`, UserController.getOrder);
 
 };
 

@@ -91,6 +91,14 @@ class UserController extends BaseController {
       this.respondWithError(err);
     }
   }
+  async getOrder() {
+    try {
+      const payload = await userAction.getOrder(this.models);
+      this.respondWithSuccess(payload);
+    } catch (err) {
+      this.respondWithError(err);
+    }
+  }
 
 
 }
@@ -122,5 +130,8 @@ module.exports.UserController = {
   },
   createOrder: async (req, res) => {
     return new UserController(req, res).createOrder();
+  },
+  getOrder: async (req, res) => {
+    return new UserController(req, res).getOrder();
   },
 };

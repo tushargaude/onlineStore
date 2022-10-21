@@ -6,6 +6,7 @@ const { updateItem } = require('./updateItem')
 const { createCart } = require('./createCart')
 const { getCart } = require('./getCart')
 const { createOrder } = require('./createOrder')
+const { getOrder } = require('./getOrder')
 
 module.exports.userAction = {
     createItems,
@@ -14,6 +15,7 @@ module.exports.userAction = {
     updateItem,
     createCart,
     getCart,
-    createOrder
+    createOrder,
+    getOrder
 
 }
