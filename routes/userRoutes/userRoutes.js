@@ -13,6 +13,7 @@ const UserRoutes = (app, auth) => {
   app.patch(`${baseRouteUrl}/items/list/:id`, UserController.updateItem);
 
   app.post(`${baseRouteUrl}/cart/list/`, UserController.createCart);
+  app.get(`${baseRouteUrl}/cart/list/`, UserController.getCart);
 
 };
 
