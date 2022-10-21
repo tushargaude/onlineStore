@@ -16,6 +16,7 @@ module.exports.userAction = {
     createItems,
     getItems,
     getItemsById,
+    deleteItems,
     updateItem,
     createCart,
     getCart,

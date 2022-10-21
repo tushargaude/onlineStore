@@ -11,6 +11,7 @@ module.exports.deleteItems = async (models,id) => {
         id: id,
       },
     });
+    return Promise.resolve("item Deleted");
   } else {
     throw new ResourceNotFoundError("item");
   }

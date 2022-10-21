@@ -45,14 +45,6 @@ class UserController extends BaseController {
       this.respondWithError(err);
     }
   }
-  async updateItem() {
-    try {
-      const payload = await userAction.updateItem(this.models, this.reqBody, this.params.id);
-      this.respondWithSuccess(payload);
-    } catch (err) {
-      this.respondWithError(err);
-    }
-  }
 
   async updateItem() {
     try {
