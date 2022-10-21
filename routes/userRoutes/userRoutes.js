@@ -12,6 +12,8 @@ const UserRoutes = (app, auth) => {
   app.delete(`${baseRouteUrl}/items/list/:id`, UserController.deleteItems);
   app.patch(`${baseRouteUrl}/items/list/:id`, UserController.updateItem);
 
+  app.post(`${baseRouteUrl}/cart/list/`, UserController.createCart);
+
 };
 
 module.exports = UserRoutes;

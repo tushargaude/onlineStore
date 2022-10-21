@@ -63,6 +63,18 @@ class UserController extends BaseController {
     }
   }
 
+  //carts
+  async createCart() {
+    try {
+      const payload = await userAction.createCart(this.models, this.reqBody);
+      this.respondWithSuccess(payload);
+    } catch (err) {
+      console.log(err);
+      this.respondWithError(err);
+    }
+  }
+
+
 }
 
 module.exports.UserController = {
@@ -83,5 +95,8 @@ module.exports.UserController = {
   },
   updateItem: async (req, res) => {
     return new UserController(req, res).updateItem();
+  },
+  createCart:async (req, res) => {
+    return new UserController(req, res).createCart();
   },
 };
