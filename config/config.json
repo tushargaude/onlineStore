@@ -1,16 +1,16 @@
 {
   "local": {
-    "username": "mrinqadmin",
-    "password": "mrinqtest",
-    "database": "spintly_template",
+    "username": "postgres",
+    "password": "tushar",
+    "database": "api",
     "host": "localhost",
     "dialect": "postgres"
   },
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "host": "127.0.0.1",
+    "username": "postgres",
+    "password": "tushar",
+    "database": "api",
+    "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
@@ -28,4 +28,3 @@
     "dialect": "postgres"
   }
 }
-

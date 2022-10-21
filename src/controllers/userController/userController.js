@@ -15,11 +15,22 @@ class UserController extends BaseController {
       this.respondWithError(err);
     }
   }
+  async getItems() {
+    try {
+      const payload = await userAction.getItems(this.models);
+      this.respondWithSuccess(payload);
+    } catch (err) {
+      this.respondWithError(err);
+    }
+  }
 
 }
 
 module.exports.UserController = {
   createItems: async (req, res) => {
     return new UserController(req, res).createItems();
-  }
+  },
+  getItems: async (req, res) => {
+    return new UserController(req, res).getItems();
+  },
 };
