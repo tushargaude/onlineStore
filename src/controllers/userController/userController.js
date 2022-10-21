@@ -136,6 +136,18 @@ class UserController extends BaseController {
     }
   }
 
+  async orderStatus() {
+    try {
+      const payload = await userAction.orderStatus(
+        this.models,
+        this.params.id
+      );
+      this.respondWithSuccess(payload);
+    } catch (err) {
+      this.respondWithError(err);
+    }
+  }
+
 
 }
 
@@ -178,5 +190,8 @@ module.exports.UserController = {
   },
   orderPayment: async (req, res) => {
     return new UserController(req, res).orderPayment();
+  },
+  orderStatus: async (req, res) => {
+    return new UserController(req, res).orderStatus();
   },
 };

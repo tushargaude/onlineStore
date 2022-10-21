@@ -10,6 +10,7 @@ const { getOrder } = require('./getOrder')
 const { getOrderById } = require('./getOrderById')
 const { deleteOrder } = require('./deleteOrder')
 const { orderPayment } = require('./orderPayment')
+const { orderStatus } = require('./orderStatus')
 
 module.exports.userAction = {
     createItems,
@@ -22,5 +23,6 @@ module.exports.userAction = {
     getOrder,
     getOrderById,
     deleteOrder,
-    orderPayment
+    orderPayment,
+    orderStatus
 }

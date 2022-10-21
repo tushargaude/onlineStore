@@ -20,6 +20,7 @@ const UserRoutes = (app, auth) => {
   app.get(`${baseRouteUrl}/order/list/:id`, UserController.getOrderById);
   app.delete(`${baseRouteUrl}/order/list/:id`, UserController.deleteOrder);
   app.get(`${baseRouteUrl}/order/payment/:id`, UserController.orderPayment);
+  app.get(`${baseRouteUrl}/order/status/:id`, UserController.orderStatus);
 
 };
 
