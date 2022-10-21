@@ -100,6 +100,18 @@ class UserController extends BaseController {
     }
   }
 
+  async getOrderById() {
+    try {
+      const payload = await userAction.getOrderById(
+        this.models,
+        this.params.id
+      );
+      this.respondWithSuccess(payload);
+    } catch (err) {
+      this.respondWithError(err);
+    }
+  }
+
 
 }
 
@@ -133,5 +145,8 @@ module.exports.UserController = {
   },
   getOrder: async (req, res) => {
     return new UserController(req, res).getOrder();
+  },
+  getOrderById: async (req, res) => {
+    return new UserController(req, res).getOrderById();
   },
 };

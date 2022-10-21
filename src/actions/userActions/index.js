@@ -7,6 +7,7 @@ const { createCart } = require('./createCart')
 const { getCart } = require('./getCart')
 const { createOrder } = require('./createOrder')
 const { getOrder } = require('./getOrder')
+const { getOrderById } = require('./getOrderById')
 
 module.exports.userAction = {
     createItems,
@@ -16,6 +17,6 @@ module.exports.userAction = {
     createCart,
     getCart,
     createOrder,
-    getOrder
-
+    getOrder,
+    getOrderById
 }
