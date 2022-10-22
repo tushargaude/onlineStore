@@ -6,37 +6,36 @@ module.exports.createOrder = async (models, reqBody) => {
   
   var skip=[];
   var create=[];
-    for (var i = 0; i < reqBody.length; i++) {
-        await validateReqBody(reqBody, models,i);
-        let cartId=(reqBody[i].cartId);
-        let price=parseInt(reqBody[i].price);
-        let address=( reqBody[i].address);
-        let date=parseInt(reqBody[i].date);
-
-        let order = await checkIfOrderExists(cartId, models);
-      
-        if (order) {
-            skip.push(" cartId: "+cartId+" ");
-          }else{
-            const order = await models.order.create({
-              cartId: cartId,
-              address: address,
-              price: price,
-              date: date,
-          });
-          create.push(" cartId: "+cartId+"");
-        }
+  for (var i = 0; i < reqBody.length; i++) {
+    await validateReqBody(reqBody, models,i);
+    let cartId=(reqBody[i].cartId);
+    let price=parseInt(reqBody[i].price);
+    let address=( reqBody[i].address);
+    let date=parseInt(reqBody[i].date);
+    let cart = await checkIfCartExists(cartId, models);
+  
+    if(cart) {
+      const order = await models.order.create({
+          cartId: cartId,
+          address: address,
+          price: price,
+          date: date,
+      });
+      create.push(" cartId: "+cartId+"");
+    }else{     
+      skip.push(" cartId: "+cartId+" ");
+    }
   }
   return ({Created: create,Skip:skip});
 }
 
-const checkIfOrderExists = async (id, models) => {
-  const order = await models.order.findOne({
+const checkIfCartExists = async (id, models) => {
+  const cart = await models.cart.findOne({
     where: {
-      cartId: id,
+      id: id,
     },
   });
-  return order ? order : false;
+  return cart ? cart : false;
 };
 
 const validateReqBody = async (reqBody, models,i) => {

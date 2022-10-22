@@ -4,26 +4,25 @@ const { BadRequestError } = require("../../errors");
 const { itemExists } = require("./common/itemExists");
 
 module.exports.createItems = async (models, reqBody) => {
-
   var skip=[];
   var create=[];
-    for (var i = 0; i < reqBody.length; i++) {
-        await validateReqBody(reqBody, models,i);
-        let name=(reqBody[i].name);
-        let price=parseInt(reqBody[i].price);
-        let description=( reqBody[i].description);
-        let item = await itemExist(name, models);
+  for (var i = 0; i < reqBody.length; i++) {
+    await validateReqBody(reqBody, models,i);
+    let name=(reqBody[i].name);
+    let price=parseInt(reqBody[i].price);
+    let description=( reqBody[i].description);
+    let item = await itemExist(name, models);
       
-        if (item) {
-            skip.push(" name: "+name+" ");
-          }else{
-          const item = await models.items.create({
-            name: name,
-            price: price,
-            description : description
-          });
-          create.push(" name: "+name+"");
-        }
+    if (item) {
+      skip.push(" name: "+name+" ");
+    }else{
+      const item = await models.items.create({
+        name: name,
+        price: price,
+        description : description
+      });
+      create.push(" name: "+name+"");
+    }
   }
   return ({Created: create,Skip:skip});
 }

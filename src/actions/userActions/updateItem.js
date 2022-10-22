@@ -24,8 +24,13 @@ module.exports.updateItem = async (models, reqBody,id) => {
           id: item.id,
         },
       });
-      console.log(updatedItems)
-      return Promise.resolve("item of id "+id+" updated");
+      const updatedItem = await models.items.findOne({
+        where: {
+          id: id,
+        },
+      });
+      console.log(updatedItem)
+      return Promise.resolve({updatedItem : updatedItem.dataValues});
     }else{
         throw new BadRequestError("item of id "+id+" does not exits");
     }

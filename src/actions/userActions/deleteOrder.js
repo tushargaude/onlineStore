@@ -10,7 +10,7 @@ module.exports.deleteOrder = async (models,id) => {
         id: id,
       },
     });
-    return Promise.resolve("Order Deleted");
+    return Promise.resolve({deletedItem : order.dataValues});
   } else {
     throw new ResourceNotFoundError("order");
   }

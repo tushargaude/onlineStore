@@ -4,14 +4,13 @@ const { ResourceNotFoundError } = require("../../errors");
 
 module.exports.deleteItems = async (models,id) => {
   const item = await checkIfItemExists(id, models);
-  
   if (item) {
     await models.items.destroy({
       where: {
         id: id,
       },
     });
-    return Promise.resolve("item Deleted");
+    return Promise.resolve({deletedItem : item.dataValues});
   } else {
     throw new ResourceNotFoundError("item");
   }
@@ -25,4 +24,3 @@ const checkIfItemExists = async (id, models) => {
   });
   return item ? item : false;
 };
-
